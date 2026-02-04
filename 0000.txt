@@ -1,0 +1,44 @@
+javascript我要依據下列的json資料繪製兩個scatter與兩個boxplot，
+每個圖表的legends與XData都是固定的，都需要繪製四個水平規格線usl,ucl,lsl,lcl，預設Y軸upper與Y軸下限lower，圖表高度為"450px"，寬度為"600px"，
+第一個圖表排列左上，chart_id為chartid + '_sheet_scatter'，需要繪製scatter圖，篩選條件chip_id為'-'的avg資料，
+第二個圖表排列右上，chart_id為chartid + '_sheet_boxplot'，需要繪製boxplot圖，篩選條件chip_id為'-'的min,q1,median,q3,max資料，
+第三個圖表排列左下，chart_id為chartid + '_chip_scatter'，需要繪製scatter圖，篩選條件chip_id不為'-'的avg資料，另外在外層需要建立button，依照chips的數量建立，如果使用者點選對應的chip按鈕，圖表則隱藏對應的chip資料，
+第四個圖表排列右下，chart_id為chartid + '_chip_boxplot'，需要繪製boxplot圖，篩選條件chip_id不為'-'的min,q1,median,q3,max資料，另外在外層需要建立button，依照chips的數量建立，如果使用者點選對應的chip按鈕，圖表則隱藏對應的chip資料，
+我的echart預設option如下
+const option = {
+    backgroundColor: "#ffffff",
+    grid: {
+        left: "10%",
+        right: "10%",
+        top: "18%",
+        bottom: "35%"
+    },
+    title: {
+        left: "center",
+        top: "1%",
+        text: data.titlestr || ""
+    },
+    tooltip: { trigger: "item" },
+    legend: {
+        top: "7%",
+        left: "center",
+        data: []
+    },
+    xAxis: {
+        type: "category",
+        axisLabel: { rotate: 90 }
+    },
+    yAxis: {
+        type: "value",
+        scale: true,
+        min: data.lower,
+        max: data.upper
+    },
+    dataZoom: [{
+        type: "inside",
+        yAxisIndex: [0],
+        start: 0,
+        end: 100
+    }],
+    series: []
+};
